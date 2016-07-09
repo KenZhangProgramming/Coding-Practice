@@ -11,8 +11,9 @@ public class selectionsort {
 	 
 	 // u need a selectionsort method to do the seletion sort
 	 public static void selectionsort(int[] data  ,int start){
-		 // base case when counter is zero
-		 if (start - (data.length-1) > 0){
+		 // base case
+         // the last element in the array doesn't need any comparison or swap, since there's only one element in the array.
+		 if (start - (data.length-1) >= 0){
 			 return;
 		 }
 		 
@@ -23,7 +24,8 @@ public class selectionsort {
 	 } 
 	 
 	 // u need a min method to find the minimum in the array with the starting index
-	 public static int minPos(int index, int[] array){
+	/* The first attempted minPos method too complicated
+    public static int minPos(int index, int[] array){
 			int min = array[index];
 			boolean isMin = true;
 			int test = array.length;
@@ -40,14 +42,30 @@ public class selectionsort {
 				isMin = true;
 			}
 			return min; 
-		}
-	 
+		}*/
+    
+    /*The corrected minPos method*/
+    public static int minPos(int index, int[] array){
+        int minPos = index;
+        
+        for (int i = index + 1; i < array.length; i++){
+            if (array[i] < array[minPos]){
+                minPos = i;
+            }
+        }
+        return minPos;
+    }
+
 	 // u need a swap method to do the swap
 	 // max # of swaps is n-1
 	 public static void swap(int i1, int i2,int[] data){
-		 int holder = 0;
-		 holder = data[i1];
-		 data[i1] = data[i2];
-		 data[i2] = holder;
+		 // u don't have to swap whent the minpos is the current # itself
+         if (i1!=i2)
+         {
+             int holder = 0;
+             holder = data[i1];
+             data[i1] = data[i2];
+             data[i2] = holder;
+         }
 	 }
 }
